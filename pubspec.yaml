@@ -1,0 +1,37 @@
+name: kb_clone
+description: KB Star Banking Clone
+
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: ^6.1.1
+  video_player: ^2.8.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+  fonts:
+    - family: KBFGText
+      fonts:
+        - asset: assets/fonts/KBFGText-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/KBFGText-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/KBFGText-Light.ttf
+          weight: 300
+    - family: Pretendard
+      fonts:
+        - asset: assets/fonts/Pretendard-Bold.ttf
+          weight: 700

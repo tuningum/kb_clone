@@ -1,0 +1,10 @@
+{
+  "name": "KB스타뱅킹",
+  "short_name": "KB Clone",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f4f4f4",
+  "theme_color": "#FFCC00",
+  "description": "KB Star Banking Clone",
+  "orientation": "portrait"
+}
