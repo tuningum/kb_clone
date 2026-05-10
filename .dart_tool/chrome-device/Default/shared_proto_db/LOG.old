@@ -1,6 +1,13 @@
-2026/05/04-00:09:02.305 40bc Reusing MANIFEST C:\Users\tunin\AppData\Local\Temp\flutter_tools.44bbca9d\flutter_tools_chrome_device.6f68beba\Default\shared_proto_db/MANIFEST-000001
-2026/05/04-00:09:02.305 40bc Recovering log #10
-2026/05/04-00:09:02.306 40bc Reusing old log C:\Users\tunin\AppData\Local\Temp\flutter_tools.44bbca9d\flutter_tools_chrome_device.6f68beba\Default\shared_proto_db/000010.log 
-2026/05/04-00:09:02.307 40bc Delete type=0 #3
-2026/05/04-00:09:02.307 40bc Delete type=0 #4
-2026/05/04-00:09:02.307 40bc Delete type=0 #7
+2026/05/10-12:54:26.282 bda4 Reusing MANIFEST C:\Users\tunin\AppData\Local\Temp\flutter_tools.77103e99\flutter_tools_chrome_device.960013b2\Default\shared_proto_db/MANIFEST-000001
+2026/05/10-12:54:26.283 bda4 Recovering log #19
+2026/05/10-12:54:26.284 bda4 Reusing old log C:\Users\tunin\AppData\Local\Temp\flutter_tools.77103e99\flutter_tools_chrome_device.960013b2\Default\shared_proto_db/000019.log 
+2026/05/10-12:54:26.285 bda4 Delete type=0 #3
+2026/05/10-12:54:26.285 bda4 Delete type=0 #4
+2026/05/10-12:54:26.285 bda4 Delete type=0 #7
+2026/05/10-12:54:26.285 bda4 Delete type=2 #8
+2026/05/10-12:54:26.285 bda4 Delete type=0 #10
+2026/05/10-12:54:26.285 bda4 Delete type=2 #11
+2026/05/10-12:54:26.285 bda4 Delete type=0 #13
+2026/05/10-12:54:26.285 bda4 Delete type=2 #14
+2026/05/10-12:54:26.285 bda4 Delete type=0 #16
+2026/05/10-12:54:26.285 bda4 Delete type=2 #17
