@@ -12,7 +12,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final PageController _bannerController = PageController();
   Timer? _bannerTimer;
   int _currentBanner = 0;
 
@@ -20,17 +19,15 @@ class _HomeScreenState extends State<HomeScreen> {
   static const double imgWidth = 1730;
 
   // Banner (전체 997, 이미지 744, 점 297, 겹침 44)
-  static const double bannerTop3x = 80;
-  static const double bannerHeight3x = 280;
-  // 비율 계산: 이미지=280*744/997=209, 점시작=280*700/997=197, 점높이=280*297/997=83
-  static const double bannerImgHeight = 209;
-  static const double bannerDotsOffset = 197; // bannerTop3x 기준
+  static const double bannerTop3x = 60;
+  static const double bannerImgHeight = 217;
+  static const double bannerDotsOffset = 217;
   static const double bannerDotsHeight = 83;
 
-  // Balance (용주님 값 그대로)
+  // Balance
   static const double balanceTop3x = 880;
   static const double balanceLeft3x = 263;
-  static const double balanceCoverWidth3x = 500;
+  static const double balanceCoverWidth3x = 800;
   static const double balanceCoverHeight3x = 100;
 
   @override
@@ -42,20 +39,14 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void dispose() {
     _bannerTimer?.cancel();
-    _bannerController.dispose();
     super.dispose();
   }
 
   void _startBannerAutoScroll() {
     _bannerTimer = Timer.periodic(const Duration(seconds: 4), (timer) {
-      if (_bannerController.hasClients) {
+      setState(() {
         _currentBanner = (_currentBanner + 1) % 4;
-        _bannerController.animateToPage(
-          _currentBanner,
-          duration: const Duration(milliseconds: 400),
-          curve: Curves.easeInOut,
-        );
-      }
+      });
     });
   }
 
@@ -81,7 +72,10 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Column(
               children: [
-                SizedBox(height: MediaQuery.of(context).padding.top),
+                Container(
+                  height: MediaQuery.of(context).padding.top,
+                  color: Colors.white,
+                ),
                 Image.asset(
                   'assets/images/gnb.png',
                   width: screenWidth,
@@ -99,33 +93,25 @@ class _HomeScreenState extends State<HomeScreen> {
                             fit: BoxFit.fitWidth,
                           ),
 
-                          // ===== 배너 이미지 (아래) =====
+                          // ===== 배너 이미지 =====
                           Positioned(
                             top: _toScreenY(bannerTop3x, screenWidth),
                             left: _toScreenX(0, screenWidth),
                             right: _toScreenX(0, screenWidth),
                             height: _toScreenY(bannerImgHeight, screenWidth),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(12 * scale),
-                              child: PageView(
-                                controller: _bannerController,
-                                onPageChanged: (i) =>
-                                    setState(() => _currentBanner = i),
-                                children: [
-                                  Image.asset('assets/images/banner1.jpg',
-                                      fit: BoxFit.cover),
-                                  Image.asset('assets/images/banner2.jpg',
-                                      fit: BoxFit.cover),
-                                  Image.asset('assets/images/banner3.jpg',
-                                      fit: BoxFit.cover),
-                                  Image.asset('assets/images/banner4.jpg',
-                                      fit: BoxFit.cover),
-                                ],
+                            child: AnimatedSwitcher(
+                              duration: const Duration(milliseconds: 500),
+                              child: Image.asset(
+                                'assets/images/banner${_currentBanner + 1}.jpg',
+                                key: ValueKey(_currentBanner),
+                                fit: BoxFit.cover,
+                                width: double.infinity,
+                                height: double.infinity,
                               ),
                             ),
                           ),
 
-                          // ===== 점 이미지 (위에 겹침) =====
+                          // ===== 점 이미지 =====
                           Positioned(
                             top: _toScreenY(
                                 bannerTop3x + bannerDotsOffset, screenWidth),
@@ -195,7 +181,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             style: TextStyle(
                                               fontFamily: 'Pretendard',
                                               fontSize: 19 * scale * 4,
-                                              fontWeight: FontWeight.w700,
+                                              fontWeight: FontWeight.w600,
                                               color: const Color(0xFF252525),
                                               height: 1.2,
                                               letterSpacing: -0.5,
