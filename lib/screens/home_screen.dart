@@ -181,7 +181,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             style: TextStyle(
                                               fontFamily: 'Pretendard',
                                               fontSize: 19 * scale * 4,
-                                              fontWeight: FontWeight.w600,
+                                              fontWeight: FontWeight.w700,
                                               color: const Color(0xFF252525),
                                               height: 1.2,
                                               letterSpacing: -0.5,
