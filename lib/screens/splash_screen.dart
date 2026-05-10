@@ -17,19 +17,16 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    // 영상 로드 시도
-    _controller = VideoPlayerController.asset('assets/images/splash_video.mov')
+    _controller = VideoPlayerController.asset('assets/images/splash_video.mp4')
       ..initialize().then((_) {
         if (mounted) {
           setState(() {});
           _controller?.play();
         }
       }).catchError((e) {
-        // 영상 없으면 무시
-        debugPrint('Splash video not found: $e');
+        debugPrint('Splash video error: $e');
       });
 
-    // 영상 끝 감지
     _controller?.addListener(() {
       final c = _controller;
       if (c != null &&
@@ -42,8 +39,8 @@ class _SplashScreenState extends State<SplashScreen> {
       }
     });
 
-    // 안전장치: 4초 후 강제 이동 (크롬에서 영상 끝 감지 안 될 때)
-    Future.delayed(const Duration(seconds: 4), () {
+    // 안전장치: 5초 후 강제 이동
+    Future.delayed(const Duration(seconds: 5), () {
       if (!_navigated && mounted) {
         _navigated = true;
         _goHome();
@@ -80,7 +77,7 @@ class _SplashScreenState extends State<SplashScreen> {
       body: isReady
           ? SizedBox.expand(
               child: FittedBox(
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
                 child: SizedBox(
                   width: c.value.size.width,
                   height: c.value.size.height,

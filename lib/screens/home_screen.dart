@@ -24,10 +24,10 @@ class _HomeScreenState extends State<HomeScreen> {
   static const double bannerTop3x = 80;
   static const double bannerHeight3x = 280;
   // Balance
-  static const double balanceTop3x = 880;
-  static const double balanceLeft3x = 263;
-  static const double balanceCoverWidth3x = 500;
-  static const double balanceCoverHeight3x = 100;
+  static const double balanceTop3x = 899;
+  static const double balanceLeft3x = 268;
+  static const double balanceCoverWidth3x = 450;
+  static const double balanceCoverHeight3x = 85;
 
   @override
   void initState() {
@@ -79,6 +79,8 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Column(
               children: [
+                // ===== 상태바 여백 (iPhone 14 Pro Max) =====
+                SizedBox(height: MediaQuery.of(context).padding.top),
                 // ===== 고정 GNB =====
                 Image.asset(
                   'assets/images/gnb.png',
@@ -103,8 +105,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       // ===== 배너 캐러셀 오버레이 =====
                       Positioned(
                         top: _toScreenY(bannerTop3x, screenWidth),
-                        left: _toScreenX(0, screenWidth),
-                        right: _toScreenX(0, screenWidth),
+                        left: _toScreenX(30, screenWidth),
+                        right: _toScreenX(30, screenWidth),
                         height: _toScreenY(bannerHeight3x, screenWidth),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(12 * scale),
@@ -130,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Positioned(
                         top: _toScreenY(balanceTop3x - 2, screenWidth),
                         left: _toScreenX(balanceLeft3x, screenWidth),
-                        width: _toScreenX(600, screenWidth),
+                        width: _toScreenX(balanceCoverWidth3x, screenWidth),
                         height: _toScreenY(balanceCoverHeight3x, screenWidth),
                         child: Container(color: const Color(0xFFFEFFFF)),
                       ),
