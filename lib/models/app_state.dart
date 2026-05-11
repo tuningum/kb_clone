@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Transaction {
   String counterpart;
-  int amount; // negative = 출금, positive = 입금
+  int amount;
   String date;
   int balanceAfter;
 
@@ -50,37 +51,31 @@ class AppState extends ChangeNotifier {
 
   // 거래 내역
   List<Transaction> transactions = [
-    Transaction(
-      counterpart: '급여',
-      amount: 3500000,
-      date: '04.25',
-      balanceAfter: 5091862,
-    ),
-    Transaction(
-      counterpart: '스타벅스',
-      amount: -4500,
-      date: '04.24',
-      balanceAfter: 1591862,
-    ),
-    Transaction(
-      counterpart: '쿠팡',
-      amount: -32000,
-      date: '04.23',
-      balanceAfter: 1596362,
-    ),
-    Transaction(
-      counterpart: '카카오페이',
-      amount: -15000,
-      date: '04.22',
-      balanceAfter: 1628362,
-    ),
-    Transaction(
-      counterpart: 'GS25 편의점',
-      amount: -3200,
-      date: '04.21',
-      balanceAfter: 1643362,
-    ),
+    Transaction(counterpart: '급여', amount: 3500000, date: '04.25', balanceAfter: 5091862),
+    Transaction(counterpart: '스타벅스', amount: -4500, date: '04.24', balanceAfter: 1591862),
+    Transaction(counterpart: '쿠팡', amount: -32000, date: '04.23', balanceAfter: 1596362),
+    Transaction(counterpart: '카카오페이', amount: -15000, date: '04.22', balanceAfter: 1628362),
+    Transaction(counterpart: 'GS25 편의점', amount: -3200, date: '04.21', balanceAfter: 1643362),
   ];
+
+  // 초기화 시 저장된 잔액 불러오기
+  AppState() {
+    _loadBalance();
+  }
+
+  Future<void> _loadBalance() async {
+    final prefs = await SharedPreferences.getInstance();
+    final saved = prefs.getInt('balance');
+    if (saved != null) {
+      balance = saved;
+      notifyListeners();
+    }
+  }
+
+  Future<void> _saveBalance() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('balance', balance);
+  }
 
   // 잔액 포맷
   String get formattedBalance {
@@ -109,6 +104,7 @@ class AppState extends ChangeNotifier {
   // 편집 메서드
   void updateBalance(int newBalance) {
     balance = newBalance;
+    _saveBalance();
     notifyListeners();
   }
 
